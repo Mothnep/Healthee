@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+
+    <h1>{{ mymember.user.username }}</h1>
+    <!-- Changed: mymember.firstname/lastname → mymember.user.username -->
+
+    <p><strong>Email:</strong> {{ mymember.user.email }}</p>
+    <p><strong>Date of Birth:</strong> {{ mymember.dob|default:"Not set" }}</p>
+    <p><strong>Size:</strong> {{ mymember.size|default:"Not set" }} cm</p>
+    <p><strong>Weight:</strong> {{ mymember.weight|default:"Not set" }} kg</p>
+    <p><strong>Body Fat:</strong> {{ mymember.bf|default:"Not set" }}%</p>
+    <p><strong>Lifts:</strong> {% if mymember.lift %}Yes{% else %}No{% endif %}</p>
+    <p><strong>Runs:</strong> {% if mymember.run %}Yes{% else %}No{% endif %}</p>
+
+    <p>Back to <a href="/account/members/">Members</a></p>
+
+</body>
+
+</html>
