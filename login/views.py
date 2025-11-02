@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth import login as auth_login, authenticate  
+from django.contrib.auth import login as auth_login, authenticate, logout as logout_user
 from django.contrib import messages  
 from django.contrib.auth.models import User
 
@@ -23,3 +23,10 @@ def login(request):
             return redirect('dashboard')  
 
     return render(request, 'login.html')
+
+def logout(request):
+    if request.method == 'POST': 
+        logout_user(request)
+        messages.success(request, 'You have been logged out successfully!')
+        return redirect('login')
+    return redirect('dashboard')  
