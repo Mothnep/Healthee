@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>{% block title %}Healthee{% endblock %}</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+
+    <style>
+        /* Modern light blue color scheme */
+        :root {
+            --primary-blue: #5CA3E8;
+            --light-blue: #E8F4FD;
+            --dark-blue: #2980B9;
+        }
+
+        body {
+            background-color: #F5F7FA;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            padding-top: 60px;
+            padding-left: 220px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 220px;
+            height: 100vh;
+            background: linear-gradient(180deg, #5CA3E8 0%, #2980B9 100%);
+            padding: 20px 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .sidebar-brand {
+            color: white;
+            font-size: 24px;
+            font-weight: bold;
+            padding: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-menu li a {
+            display: block;
+            padding: 15px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .sidebar-menu li a:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            padding-left: 25px;
+        }
+
+        .sidebar-menu li a.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+            border-left: 4px solid white;
+        }
+
+        /* Top bar */
+        .top-bar {
+            position: fixed;
+            top: 0;
+            left: 220px;
+            right: 0;
+            height: 60px;
+            background: white;
+            border-bottom: 1px solid #E0E6ED;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .top-bar h1 {
+            margin: 0;
+            font-size: 22px;
+            color: #2C3E50;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Main content */
+        .main-content {
+            padding: 90px 30px 30px 30px;
+        }
+
+        /* Modern cards */
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .card-header {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2C3E50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light-blue);
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--primary-blue) !important;
+            border-color: var(--primary-blue) !important;
+        }
+
+        .btn-primary:hover {
+            background: var(--dark-blue) !important;
+            border-color: var(--dark-blue) !important;
+        }
+
+        /* Alerts */
+        .alert {
+            border-radius: 6px;
+            border-left: 4px solid;
+        }
+
+        .alert-success {
+            background: #E8F5E9;
+            border-left-color: #4CAF50;
+            color: #2E7D32;
+        }
+
+        .alert-error,
+        .alert-danger {
+            background: #FFEBEE;
+            border-left-color: #F44336;
+            color: #C62828;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            body {
+                padding-left: 0;
+            }
+
+            .sidebar {
+                transform: translateX(-220px);
+            }
+
+            .top-bar {
+                left: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <span class="glyphicon glyphicon-heart"></span> Healthee
+        </div>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="{% url 'dashboard' %}" class="{% if 'dashboard' in request.path %}active{% endif %}">
+                    <span class="glyphicon glyphicon-dashboard"></span> Dashboard
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'profile' %}" class="{% if 'profile' in request.path %}active{% endif %}">
+                    <span class="glyphicon glyphicon-user"></span> My Profile
+                </a>
+            </li>
+            <li>
+                <a href="{% url 'stats_overview' %}" class="{% if 'stats' in request.path %}active{% endif %}">
+                    <span class="glyphicon glyphicon-stats"></span> Statistics
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Top bar -->
+    <div class="top-bar">
+        <h1>{% block page_title %}Dashboard{% endblock %}</h1>
+        <div class="user-info">
+            <div class="user-avatar">{{ request.user.username|slice:":1"|upper }}</div>
+            <span>{{ request.user.username }}</span>
+        </div>
+    </div>
+
+    <!-- Main content -->
+    <div class="main-content">
+        <!-- Messages -->
+        {% if messages %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
+        {% endif %}
+
+        {% block content %}{% endblock %}
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.4.1/dist/js/bootstrap.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>
