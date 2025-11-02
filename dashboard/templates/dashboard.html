@@ -1,0 +1,14 @@
+{% extends 'authenticated_base.html' %}
+
+{% block title %}Dashboard - Healthee{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2>Welcome back, {{ request.user.username }}! 👋</h2>
+    <p>Your dashboard will be here soon.</p>
+    <a href="{% url 'profile' %}" class="btn btn-primary">
+        Go to My Profile
+    </a>
+</div>
+{% endblock %}

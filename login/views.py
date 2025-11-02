@@ -8,7 +8,6 @@ def login(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
 
-        # Check if that username exists
         if not User.objects.filter(username=username).exists():
             messages.error(request, 'Invalid Username')
             return redirect('login')
@@ -21,6 +20,6 @@ def login(request):
         else:
             auth_login(request, user)
             messages.success(request, f'Welcome back, {username}!')
-            return redirect('profile')
+            return redirect('dashboard')  
 
     return render(request, 'login.html')

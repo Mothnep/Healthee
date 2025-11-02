@@ -26,7 +26,7 @@ def register(request):
 
             # Automatic login 
             auth_login(request, user)
-            return redirect('profile')  
+            return redirect('dashboard')  
         
         # Form not valid -> show form with errors
     else:
