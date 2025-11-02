@@ -215,6 +215,14 @@
         <div class="user-info">
             <div class="user-avatar">{{ request.user.username|slice:":1"|upper }}</div>
             <span>{{ request.user.username }}</span>
+            <form method="post" action="{% url 'logout' %}" style="display: inline; margin: 0;">
+                {% csrf_token %}
+                <button type="submit"
+                    style="background: none; border: none; color: #2C3E50; cursor: pointer; margin-left: 10px;"
+                    title="Logout">
+                    <span class="glyphicon glyphicon-log-out"></span>
+                </button>
+            </form>
         </div>
     </div>
 
